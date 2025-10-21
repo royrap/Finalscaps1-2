@@ -51,7 +51,21 @@ export default function LoginPage() {
         }, 1500)
       }
     } catch (error: any) {
-      setError(error.message || 'An error occurred during login')
+      console.error('Login error:', error)
+      const message = error?.message || String(error)
+
+      // Handle invalid refresh token specifically
+      if (message.includes('Invalid Refresh Token') || message.includes('Refresh Token Not Found')) {
+        try {
+          // try to clear the current session
+          await supabase.auth.signOut()
+        } catch (e) {
+          console.warn('Error signing out after invalid refresh token:', e)
+        }
+        setError('Session expired or invalid refresh token. Please refresh the page and try logging in again.')
+      } else {
+        setError(message || 'An error occurred during login')
+      }
     } finally {
       setLoading(false)
     }
@@ -132,6 +146,16 @@ export default function LoginPage() {
                 disabled={loading}
               >
                 {loading ? "Signing in..." : "Sign In"}
+              </Button>
+
+              {/* Download APK button - opens external link */}
+              <Button
+                type="button"
+                variant="ghost"
+                className="w-full mt-3"
+                onClick={() => window.open('https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1UnXXkU5Dw4IR53x0FMxpb3Y0GKppG8kB%2Fview%3Fusp%3Ddrivesdk%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExT2RhZmU0MkhTY0JuY1RrSQEeKNKfgPynBNqKy-bCfM9b4bJaQTTAJ4d5gLDLRh4MQWdzGAX7GjLBays1fOk_aem_d4RYGJCfWM1fcvfU7zSp-Q&h=AT3Tw-1LwazXEdyzzFJQKOZhVFNh-vO0og7Y60_aSsp6Sf_7kVaZEGZ9XYh-r8UdBSJ0W4_g3BYMZoEiDhOhuXtxVQO6jFFHVGhWBz8_yv7M7382r4MkDWQ5ZIVCXj3OB_bQQxcfR7aeWdkCGZ5XTQ', '_blank')}
+              >
+                Download APK
               </Button>
             </form>
           </CardContent>
