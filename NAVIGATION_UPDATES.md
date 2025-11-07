@@ -67,7 +67,7 @@
 
 ```
 ┌─────────────────────────────┐
-│   🔧 RoadAid Admin         │
+│   🔧 TalyerOTG Admin         │
 ├─────────────────────────────┤
 │                             │
 │  🏠 Dashboard              │
@@ -264,3 +264,4 @@ Successfully updated the admin navigation system:
 **Status:** ✅ Complete and Production Ready
 
 The navigation is now more intuitive and the verifications page is cleaner with better focus on its core functionality.
+
