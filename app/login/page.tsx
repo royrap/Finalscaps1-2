@@ -152,7 +152,7 @@ export default function LoginPage() {
               <Button
                 type="button"
                 className="w-full mt-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white hover:opacity-95 font-medium py-2 rounded-lg flex items-center justify-center gap-2"
-                onClick={() => window.open('https://l.facebook.com/l.php?u=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1UnXXkU5Dw4IR53x0FMxpb3Y0GKppG8kB%2Fview%3Fusp%3Ddrivesdk%26fbclid%3DIwZXh0bgNhZW0CMTAAYnJpZBExT2RhZmU0MkhTY0JuY1RrSQEeKNKfgPynBNqKy-bCfM9b4bJaQTTAJ4d5gLDLRh4MQWdzGAX7GjLBays1fOk_aem_d4RYGJCfWM1fcvfU7zSp-Q&h=AT3Tw-1LwazXEdyzzFJQKOZhVFNh-vO0og7Y60_aSsp6Sf_7kVaZEGZ9XYh-r8UdBSJ0W4_g3BYMZoEiDhOhuXtxVQO6jFFHVGhWBz8_yv7M7382r4MkDWQ5ZIVCXj3OB_bQQxcfR7aeWdkCGZ5XTQ', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1NWL2_yTm2CFWuIpkcjBpAlMyCJ6gNdbv/view', '_blank')}
               >
                 <DownloadCloud className="h-4 w-4" />
                 <span>Download APK</span>
