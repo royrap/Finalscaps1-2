@@ -274,7 +274,7 @@ export default function UsersPage() {
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
             User Management
           </h1>
-          <p className="text-lg text-gray-600">Manage all users in the RoadAid system</p>
+          <p className="text-lg text-gray-600">Manage all users in the TalyerOTG system</p>
         </div>
         <div className="flex items-center gap-4">
           <Badge variant="outline" className="text-lg px-4 py-2 border-blue-300 bg-blue-50 text-blue-700 rounded-full">
@@ -360,7 +360,7 @@ export default function UsersPage() {
                       <SelectItem value="mechanic">Mechanic</SelectItem>
                       <SelectItem value="talyer_owner">Talyer Owner (Shop Owner)</SelectItem>
                       <SelectItem value="admin">Admin</SelectItem>
-                      <SelectItem value="super_admin">Super Admin</SelectItem>
+                      <SelectItem value="super_admin">Admin</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -400,7 +400,7 @@ export default function UsersPage() {
             </div>
             <div>
               <CardTitle className="text-xl font-semibold text-gray-900">User Management</CardTitle>
-              <CardDescription className="text-gray-600">Manage all users in the RoadAid system</CardDescription>
+              <CardDescription className="text-gray-600">Manage all users in the TalyerOTG system</CardDescription>
             </div>
           </div>
         </CardHeader>
@@ -426,7 +426,7 @@ export default function UsersPage() {
                 <SelectItem value="mechanic">Mechanic</SelectItem>
                 <SelectItem value="talyer_owner">Talyer Owner</SelectItem>
                 <SelectItem value="admin">Admin</SelectItem>
-                <SelectItem value="super_admin">Super Admin</SelectItem>
+                <SelectItem value="super_admin">Admin</SelectItem>
               </SelectContent>
             </Select>
             <Select value={filterStatus} onValueChange={setFilterStatus}>
