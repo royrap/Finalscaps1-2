@@ -152,7 +152,7 @@ export default function LoginPage() {
               <Button
                 type="button"
                 className="w-full mt-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white hover:opacity-95 font-medium py-2 rounded-lg flex items-center justify-center gap-2"
-                onClick={() => window.open('https://drive.google.com/file/d/1NWL2_yTm2CFWuIpkcjBpAlMyCJ6gNdbv/view', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1CkbcR7LzyI0fQKSlXlp0pC43pueo5Xh-/view?usp=drivesdk', '_blank')}
               >
                 <DownloadCloud className="h-4 w-4" />
                 <span>Download APK</span>
