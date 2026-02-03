@@ -5,7 +5,8 @@ class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   // 🔗 Ilagay mo dito ang iyong download link
-  final String _apkDownloadUrl = 'https://drive.google.com/file/d/1nrDrd9__Hw-Gbo8i_zn-WGTsAkbyF_Oy/view?usp=drivesdk';
+  static const String _apkDownloadUrl =
+'https://drive.google.com/file/d/1nrDrd9__Hw-Gbo8i_zn-WGTsAkbyF_Oy/view?usp=sharing';
 
   Future<void> _openDownloadLink() async {
     final Uri url = Uri.parse(_apkDownloadUrl);
