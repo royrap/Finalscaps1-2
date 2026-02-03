@@ -111,7 +111,7 @@ export default function AdminLayout({
           <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-lg">
             <Wrench className="h-6 w-6 text-red-600" />
           </div>
-          <h1 className="text-xl font-bold text-white tracking-wide">TalyerOTG Admin</h1>
+          <h1 className="text-xl font-bold text-white tracking-wide">RoadAid Admin</h1>
         </div>
       </div>
       <nav className="flex flex-1 flex-col px-4 py-6">

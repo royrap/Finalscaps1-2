@@ -165,6 +165,17 @@ export default function UserManagementPage() {
     }
   }
 
+  const getUserTypeLabel = (userType: string) => {
+    switch (userType) {
+      case 'super_admin': return 'Admin'
+      case 'admin': return 'Admin'
+      case 'talyer_owner': return 'Talyer Owner'
+      case 'mechanic': return 'Mechanic'
+      case 'customer': return 'Customer'
+      default: return userType.replace('_', ' ')
+    }
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -194,7 +205,7 @@ export default function UserManagementPage() {
                   {currentUser.first_name} {currentUser.last_name}
                 </span>
                 <Badge className={getUserTypeColor(currentUser.user_type)}>
-                  {currentUser.user_type}
+                  {getUserTypeLabel(currentUser.user_type)}
                 </Badge>
               </div>
             )}
@@ -327,7 +338,7 @@ export default function UserManagementPage() {
                       </SelectItem>
                       <SelectItem value="super_admin">
                         <div className="flex flex-col">
-                          <span>Super Admin</span>
+                          <span>Admin</span>
                           <span className="text-xs text-gray-500">Full system access and control</span>
                         </div>
                       </SelectItem>
@@ -424,7 +435,7 @@ export default function UserManagementPage() {
                       <TableCell>{user.email}</TableCell>
                       <TableCell>
                         <Badge className={getUserTypeColor(user.user_type)}>
-                          {user.user_type.replace('_', ' ')}
+                          {getUserTypeLabel(user.user_type)}
                         </Badge>
                       </TableCell>
                       <TableCell>

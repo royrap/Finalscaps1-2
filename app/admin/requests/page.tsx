@@ -273,7 +273,6 @@ export default function ServiceRequestsPage() {
                     <TableCell>
                       <div className="space-y-1">
                         <p className="font-medium">{request.title}</p>
-                        <p className="text-sm text-muted-foreground">{request.service_categories?.name}</p>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -349,9 +348,6 @@ export default function ServiceRequestsPage() {
                                       <Badge className={`ml-2 ${getStatusColor(selectedRequest.status)}`}>
                                         {selectedRequest.status.replace("_", " ")}
                                       </Badge>
-                                    </p>
-                                    <p>
-                                      <strong>Category:</strong> {selectedRequest.service_categories?.name || "N/A"}
                                     </p>
                                   </div>
                                 </div>

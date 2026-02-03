@@ -510,7 +510,7 @@ export default function AdminDashboard() {
             <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
               Admin Dashboard
           </h1>
-          <p className="text-lg text-gray-600">Welcome back! Here's what's happening with TalyerOTG today.</p>
+          <p className="text-lg text-gray-600">Welcome back! Here's what's happening with RoadAid today.</p>
         </div>
         <div className="flex items-center space-x-4">
           <Badge variant="outline" className="text-lg px-6 py-3 border-green-300 bg-green-50 text-green-700 rounded-full font-medium">

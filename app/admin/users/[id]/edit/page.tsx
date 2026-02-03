@@ -332,7 +332,7 @@ export default function EditUserPage() {
                   <SelectItem value="mechanic">Mechanic</SelectItem>
                   <SelectItem value="talyer_owner">Shop Owner</SelectItem>
                   <SelectItem value="admin">Admin</SelectItem>
-                  <SelectItem value="super_admin">Super Admin</SelectItem>
+                  <SelectItem value="super_admin">Admin</SelectItem>
                 </SelectContent>
               </Select>
             </div>

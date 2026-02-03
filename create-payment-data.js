@@ -1,7 +1,7 @@
 const { createClient } = require('@supabase/supabase-js')
 
-const supabaseUrl = 'https://pquoghkskunvbgqitwjy.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxdW9naGtza3VudmJncWl0d2p5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU0NTkzNTUsImV4cCI6MjA1MTAzNTM1NX0.YTKo_Z13N7SJ97LMJNYhgkcNV_5c6OMILjYFMSDwf5A'
+const supabaseUrl = 'https://olxquclxgtrbyxfxxscj.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9seHF1Y2x4Z3RyYnl4Znh4c2NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MTQ3OTksImV4cCI6MjA2NDQ5MDc5OX0.8cZ6-Y5e1E8KK4znvQAzI6RkX3XMfgdgPyVAVj2hfh0'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 async function createSamplePayments() {

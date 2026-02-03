@@ -326,8 +326,7 @@ export function UserPermissionsModal() {
             <CardContent>
               <div className="space-y-4">
                 {[
-                  { role: "Super Admin", permissions: ["All System Access", "User Management", "Financial Control", "Settings"] },
-                  { role: "Admin", permissions: ["User Management", "Service Requests", "Basic Reports"] },
+                  { role: "Admin", permissions: ["All System Access", "User Management", "Financial Control", "Settings"] },
                   { role: "Shop Owner", permissions: ["Manage Services", "View Bookings", "Payment History"] },
                   { role: "Mechanic", permissions: ["Accept Jobs", "Update Status", "View Profile"] }
                 ].map((role, index) => (

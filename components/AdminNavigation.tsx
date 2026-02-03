@@ -7,13 +7,10 @@ import { Button } from "@/components/ui/button"
 
 const adminRoutes = [
   { href: "/admin", label: "Dashboard" },
-  { href: "/admin/dashboard", label: "Comprehensive Dashboard" },
   { href: "/admin/requests", label: "Requests" },
   { href: "/admin/users", label: "Users" },
-  { href: "/user-management", label: "User Management" },
   { href: "/admin/verifications", label: "Verifications" },
-  { href: "/payments", label: "Payments" },
-  { href: "/analytics", label: "Analytics" },
+  { href: "/admin/payments", label: "Payments" },
   { href: "/settings", label: "Settings" },
 ]
 

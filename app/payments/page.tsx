@@ -74,31 +74,58 @@ export default function PaymentsPage() {
 
   const fetchPayments = async () => {
     try {
-      const { data, error } = await supabase
+      // Fetch payments first
+      const { data: paymentsData, error: paymentsError } = await supabase
         .from('payments')
-        .select(`
-          *,
-          customer:customer_id (
-            first_name,
-            last_name,
-            email
-          ),
-          provider:provider_id (
-            company_name,
-            user_id (
-              first_name,
-              last_name
-            )
-          ),
-          request:request_id (
-            title,
-            description
-          )
-        `)
+        .select('*')
         .order('created_at', { ascending: false })
 
-      if (error) throw error
-      setPayments(data || [])
+      if (paymentsError) throw paymentsError
+      if (!paymentsData || paymentsData.length === 0) {
+        setPayments([])
+        setLoading(false)
+        return
+      }
+
+      // Get unique IDs for related data
+      const customerIds = [...new Set(paymentsData.map(p => p.customer_id))]
+      const providerIds = [...new Set(paymentsData.map(p => p.provider_id))]
+      const requestIds = [...new Set(paymentsData.map(p => p.request_id))]
+
+      // Fetch customers
+      const { data: customers } = await supabase
+        .from('user_profiles')
+        .select('id, first_name, last_name, email')
+        .in('id', customerIds)
+
+      // Fetch providers
+      const { data: providers } = await supabase
+        .from('service_providers')
+        .select(`
+          id,
+          company_name,
+          user_id (
+            first_name,
+            last_name
+          )
+        `)
+        .in('id', providerIds)
+
+      // Fetch requests
+      const { data: requests } = await supabase
+        .from('service_requests')
+        .select('id, title, description')
+        .in('id', requestIds)
+
+      // Map everything together
+      const enrichedPayments = paymentsData.map(payment => ({
+        ...payment,
+        customer: customers?.find(c => c.id === payment.customer_id),
+        provider: providers?.find(p => p.id === payment.provider_id),
+        request: requests?.find(r => r.id === payment.request_id)
+      }))
+
+      setPayments(enrichedPayments)
     } catch (error: any) {
       setError(error.message)
     } finally {
@@ -145,6 +172,11 @@ export default function PaymentsPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed': return 'bg-green-100 text-green-800'
+      case 'released_to_provider': return 'bg-blue-100 text-blue-800'
+      case 'in_escrow': return 'bg-purple-100 text-purple-800'
+      case 'processing': return 'bg-yellow-100 text-yellow-800'
+      case 'validating': return 'bg-orange-100 text-orange-800'
+      case 'confirming': return 'bg-cyan-100 text-cyan-800'
       case 'pending': return 'bg-yellow-100 text-yellow-800'
       case 'failed': return 'bg-red-100 text-red-800'
       case 'refunded': return 'bg-gray-100 text-gray-800'
@@ -280,7 +312,12 @@ export default function PaymentsPage() {
                 <SelectContent>
                   <SelectItem value="all">All Statuses</SelectItem>
                   <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="processing">Processing</SelectItem>
+                  <SelectItem value="validating">Validating</SelectItem>
+                  <SelectItem value="confirming">Confirming</SelectItem>
+                  <SelectItem value="in_escrow">In Escrow</SelectItem>
                   <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="released_to_provider">Released to Provider</SelectItem>
                   <SelectItem value="failed">Failed</SelectItem>
                   <SelectItem value="refunded">Refunded</SelectItem>
                 </SelectContent>
@@ -318,6 +355,7 @@ export default function PaymentsPage() {
                     <TableHead>Service</TableHead>
                     <TableHead>Amount</TableHead>
                     <TableHead>Platform Fee</TableHead>
+                    <TableHead>Provider Amount</TableHead>
                     <TableHead>Method</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Date</TableHead>
@@ -362,20 +400,28 @@ export default function PaymentsPage() {
                         ₱{payment.amount?.toLocaleString()}
                       </TableCell>
                       <TableCell className="text-sm">
-                        ₱{payment.platform_fee?.toLocaleString()}
+                        ₱{payment.platform_fee?.toLocaleString() || '0.00'}
+                      </TableCell>
+                      <TableCell className="text-sm font-medium text-green-600">
+                        ₱{payment.provider_amount?.toLocaleString()}
                       </TableCell>
                       <TableCell>
                         <Badge variant="outline">
-                          {payment.payment_method || 'Unknown'}
+                          {payment.payment_method || 'N/A'}
                         </Badge>
                       </TableCell>
                       <TableCell>
                         <Badge className={getStatusColor(payment.status)}>
-                          {payment.status}
+                          {payment.status.replace(/_/g, ' ')}
                         </Badge>
                       </TableCell>
                       <TableCell>
-                        {new Date(payment.created_at).toLocaleDateString()}
+                        <div className="text-sm">
+                          {new Date(payment.created_at).toLocaleDateString()}
+                          <div className="text-xs text-gray-500">
+                            {new Date(payment.created_at).toLocaleTimeString()}
+                          </div>
+                        </div>
                       </TableCell>
                       <TableCell>
                         <Button variant="ghost" size="sm">
@@ -386,7 +432,7 @@ export default function PaymentsPage() {
                   ))}
                   {filteredPayments.length === 0 && (
                     <TableRow>
-                      <TableCell colSpan={10} className="text-center py-8">
+                      <TableCell colSpan={11} className="text-center py-8">
                         No payments found
                       </TableCell>
                     </TableRow>

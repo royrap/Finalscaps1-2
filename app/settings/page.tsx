@@ -47,9 +47,9 @@ interface SettingsForm {
 export default function SettingsPage() {
   const [settings, setSettings] = useState<AppSetting[]>([])
   const [form, setForm] = useState<SettingsForm>({
-    app_name: "TalyerOTG",
+    app_name: "RoadAid",
     app_description: "On-demand auto repair services",
-    contact_email: "support@talyerotg.com",
+    contact_email: "support@roadaid.com",
     contact_phone: "+63 917 123 4567",
     platform_fee_percentage: "10",
     max_service_radius: "50",

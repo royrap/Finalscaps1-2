@@ -46,10 +46,10 @@ interface SystemSettings {
 
 export default function AdminSettingsPage() {
   const [settings, setSettings] = useState<SystemSettings>({
-    site_name: "TalyerOTG",
+    site_name: "RoadAid",
     site_description: "Emergency roadside assistance platform",
-    admin_email: "admin@talyerotg.com",
-    support_email: "support@talyerotg.com",
+    admin_email: "admin@roadaid.com",
+    support_email: "support@roadaid.com",
     default_currency: "PHP",
     commission_rate: 15,
     max_radius: 50,

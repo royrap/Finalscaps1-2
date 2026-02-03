@@ -25,3 +25,27 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Flutter / Dart ignores
+/build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+.idea/
+.vscode/
+*.iml
+/android/app/*.keystore
+
+# Android Gradle
+/.gradle/
+/.idea/
+
+# iOS
+**/Flutter/Generated.xcconfig
+**/Generated.xcconfig
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
