@@ -672,10 +672,10 @@ export default function AdminVerificationsPage() {
       }
 
       // Set the data for each log type with user names
-      const processLogs = (logs: any[]) => logs?.map(log => ({
+      const processLogs = (logs: any[] | null) => (logs || []).map(log => ({
         ...log,
         user_name: log.user_profiles ? `${log.user_profiles.first_name} ${log.user_profiles.last_name}` : null
-      })) || []
+      }))
 
       setAuditLogs(processLogs(auditLogsRes.data))
       setAdminActivityLogs(processLogs(adminLogsRes.data))
